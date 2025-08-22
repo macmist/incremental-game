@@ -1,15 +1,18 @@
-extends Node2D
+extends Sprite2D
 
-@export var planet_position: Vector2
 @export var speed: float = 1.0   # radians per second
 
 var angle: float = 0.0
 var target_angle: float = 0.0
 var radius: float = 100.0
+var planet_position: Vector2 = Vector2.ZERO
 
-func _ready() -> void:
-	radius = self.position.distance_to(planet_position)
-	#set_target(Vector2(290, 337))
+
+
+func set_planet(planet_position: Vector2, radius: float):
+	self.planet_position = planet_position
+	self.radius = radius + (self.texture.get_size().x * self.scale.x) / 2.0
+	print("position: ", position, " distance: ", radius)
 
 func _process(delta):
 	# Move angle towards target
@@ -36,6 +39,5 @@ func move_toward_angle(current: float, target: float, step: float) -> float:
 
 
 func _input(event):
-	if event is InputEventMouseButton:
-		print("Mouse Click/Unclick at: ", event.position)
+	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
 		set_target(event.position)
