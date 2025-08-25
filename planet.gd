@@ -1,8 +1,14 @@
 extends Sprite2D
 
+class_name Planet
 
 @export var walker_scene: PackedScene
 @onready var collision_shape: CollisionShape2D = $Area2D/CollisionShape2D
+
+signal spawn(angle)
+
+func _ready() -> void:
+	spawn.connect(spawn_walker)
 
 func spawn_walker(angle: float):
 	var walker = walker_scene.instantiate()
@@ -16,7 +22,7 @@ func spawn_walker(angle: float):
 	var pos = center + Vector2(cos(angle), sin(angle)) * radius
 	print("destination: ", position)
 	walker.global_position = pos
-	walker.rotation = angle + PI/2   # optional: face tangent to surface
+	walker.rotation = angle + PI/2  
 	
 	# If your walker has a script with planet info
 	if walker.has_method("set_planet"):
@@ -24,7 +30,9 @@ func spawn_walker(angle: float):
 		walker.set_planet(center, radius)
 
 
-func _input(event):
-	if event is InputEventMouseButton:
-		var angle = 0  # TAU = 2*PI
-		spawn_walker(angle)
+
+
+#func _input(event):
+	#if event is InputEventMouseButton:
+		#var angle = 0  # TAU = 2*PI
+		#spawn_walker(angle)

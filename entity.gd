@@ -38,6 +38,6 @@ func move_toward_angle(current: float, target: float, step: float) -> float:
 	return current + step * sign(diff)
 
 
-func _input(event):
+func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
 		set_target(event.position)
