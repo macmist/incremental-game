@@ -1,0 +1,3 @@
+extends CollectableResource
+
+class_name TreeResource

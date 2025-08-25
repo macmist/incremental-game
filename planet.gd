@@ -6,9 +6,11 @@ class_name Planet
 @onready var collision_shape: CollisionShape2D = $Area2D/CollisionShape2D
 
 signal spawn(angle)
+signal spawn_object(packed_scene)
 
 func _ready() -> void:
 	spawn.connect(spawn_walker)
+	spawn_object.connect(spawn_static_object)
 
 func spawn_walker(angle: float):
 	var walker = walker_scene.instantiate()
@@ -30,6 +32,32 @@ func spawn_walker(angle: float):
 		walker.set_planet(center, radius)
 
 
+func get_radius() -> float:
+	var circle = collision_shape.shape as CircleShape2D
+	return circle.radius * collision_shape.scale.x
+
+
+func spawn_static_object(scene: PackedScene):
+	var obj = scene.instantiate()
+	get_tree().current_scene.add_child(obj)
+
+	var center = global_position
+	var radius = get_radius()
+
+	# Pick a random angle
+	var angle = randf() * TAU
+	var pos = center + Vector2(cos(angle), sin(angle)) * radius
+
+	# Optional: push outward a bit if the sprite should sit outside the circle
+	var sprite = obj
+	if sprite:
+		var half_height = (sprite.texture.get_size().y * sprite.scale.y) / 2.0
+		pos += Vector2(cos(angle), sin(angle)) * half_height
+	else:
+		print("Nope")
+
+	obj.global_position = pos
+	obj.rotation = angle + PI/2   # makes it “stand upright” on the surface
 
 
 #func _input(event):

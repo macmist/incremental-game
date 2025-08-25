@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://i4l60um4ccq7"]
+[gd_scene load_steps=8 format=3 uid="uid://i4l60um4ccq7"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_r33xx"]
 [ext_resource type="PackedScene" uid="uid://dk5fesphvmeu1" path="res://entity.tscn" id="2_82dli"]
+[ext_resource type="PackedScene" uid="uid://dbg2gm1pa0r0e" path="res://tree.tscn" id="2_pqijx"]
 [ext_resource type="Script" path="res://planet.gd" id="3_rhbx2"]
 [ext_resource type="Texture2D" uid="uid://bpl5758qg7c2e" path="res://planet.png" id="4_spvb6"]
+[ext_resource type="Script" path="res://wood_label.gd" id="6_vyjjk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pkewr"]
 radius = 28.0002
@@ -11,6 +13,7 @@ radius = 28.0002
 [node name="root" type="Node2D" node_paths=PackedStringArray("planet")]
 script = ExtResource("1_r33xx")
 planet = NodePath("Planet")
+tree = ExtResource("2_pqijx")
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(290, 337)
@@ -35,9 +38,22 @@ debug_color = Color(0.43645, 0.536207, 0.726018, 0.42)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Button" type="Button" parent="CanvasLayer"]
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
 text = "Spawn"
 
-[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
+[node name="Button2" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+text = "Spawn tree
+"
+
+[node name="WoodLabel" type="Label" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+script = ExtResource("6_vyjjk")
+
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/Button2" to="." method="_on_button_2_pressed"]
