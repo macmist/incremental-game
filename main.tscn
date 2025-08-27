@@ -1,22 +1,20 @@
-[gd_scene load_steps=8 format=3 uid="uid://i4l60um4ccq7"]
+[gd_scene load_steps=9 format=3 uid="uid://i4l60um4ccq7"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_r33xx"]
 [ext_resource type="PackedScene" uid="uid://dk5fesphvmeu1" path="res://entity.tscn" id="2_82dli"]
 [ext_resource type="PackedScene" uid="uid://dbg2gm1pa0r0e" path="res://tree.tscn" id="2_pqijx"]
 [ext_resource type="Script" path="res://planet.gd" id="3_rhbx2"]
 [ext_resource type="Texture2D" uid="uid://bpl5758qg7c2e" path="res://planet.png" id="4_spvb6"]
-[ext_resource type="Script" path="res://wood_label.gd" id="6_vyjjk"]
+[ext_resource type="Script" path="res://Scripts/ResourceUI.gd" id="6_th2vn"]
+[ext_resource type="PackedScene" uid="uid://dcvdrsqcccsox" path="res://resource_label.tscn" id="7_oy5wd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pkewr"]
-radius = 28.0002
+radius = 28.8
 
 [node name="root" type="Node2D" node_paths=PackedStringArray("planet")]
 script = ExtResource("1_r33xx")
 planet = NodePath("Planet")
 tree = ExtResource("2_pqijx")
-
-[node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(290, 337)
 
 [node name="Planet" type="Sprite2D" parent="."]
 position = Vector2(867, 523)
@@ -51,9 +49,10 @@ layout_mode = 2
 text = "Spawn tree
 "
 
-[node name="WoodLabel" type="Label" parent="CanvasLayer/HBoxContainer"]
+[node name="Resources" type="HBoxContainer" parent="CanvasLayer/HBoxContainer"]
 layout_mode = 2
-script = ExtResource("6_vyjjk")
+script = ExtResource("6_th2vn")
+resource_label_scene = ExtResource("7_oy5wd")
 
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/Button2" to="." method="_on_button_2_pressed"]

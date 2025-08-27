@@ -2,8 +2,11 @@ extends Node
 
 class_name CollectableResource
 
+enum ResourceType {WOOD, STONE}
+
 @export var total: int = 100
 @export var remaining: int = 100
+@export var resource_type: ResourceType = ResourceType.WOOD
 
 
 func collect(amount: int) -> int:

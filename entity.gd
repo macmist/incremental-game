@@ -24,7 +24,7 @@ func collect():
 		print("collecting")
 		var collected = target.collect(collect_speed)
 		if collected > 0:
-			GameManager.add_wood(collected)
+			GameManager.add_resource(target.resource_type, collected)
 		if not is_instance_valid(target) or target.remaining <= 0:
 			target = null
 

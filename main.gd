@@ -5,7 +5,9 @@ extends Node2D
 
 
 func _on_button_pressed() -> void:
-	planet.spawn.emit(20)
+	if GameManager.spend_resource(CollectableResource.ResourceType.WOOD, GameManager.spawn_cost):
+		planet.spawn.emit(20)
+		GameManager.update_spawn_cost()
 	
 	
 
