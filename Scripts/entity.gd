@@ -29,7 +29,7 @@ func collect():
 			target = null
 
 func find_target():
-	var trees = get_tree().get_nodes_in_group("Trees")
+	var trees = get_tree().get_nodes_in_group("Resources")
 	if trees.size() == 0:
 		return
 	trees.sort_custom(func(a, b): return position.distance_to(a.position) < position.distance_to(b.position))

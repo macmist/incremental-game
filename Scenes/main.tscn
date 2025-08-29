@@ -1,0 +1,72 @@
+[gd_scene load_steps=11 format=3 uid="uid://i4l60um4ccq7"]
+
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_kao1j"]
+[ext_resource type="PackedScene" uid="uid://dbg2gm1pa0r0e" path="res://Components/tree.tscn" id="2_jx7dw"]
+[ext_resource type="PackedScene" uid="uid://bmei24pv6tlf8" path="res://Components/rock.tscn" id="3_d7bay"]
+[ext_resource type="PackedScene" uid="uid://cjr3y723djjua" path="res://house.tscn" id="4_puitm"]
+[ext_resource type="Texture2D" uid="uid://bpl5758qg7c2e" path="res://Images/planet.png" id="4_ssv5k"]
+[ext_resource type="Script" path="res://Scripts/planet.gd" id="5_ykbss"]
+[ext_resource type="PackedScene" uid="uid://dk5fesphvmeu1" path="res://Components/entity.tscn" id="6_4avp5"]
+[ext_resource type="Script" path="res://Scripts/ResourceUI.gd" id="7_impcx"]
+[ext_resource type="PackedScene" uid="uid://dcvdrsqcccsox" path="res://Components/resource_label.tscn" id="8_mkrk4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pkewr"]
+radius = 28.8
+
+[node name="root" type="Node2D" node_paths=PackedStringArray("planet")]
+script = ExtResource("1_kao1j")
+planet = NodePath("Planet")
+tree = ExtResource("2_jx7dw")
+rock = ExtResource("3_d7bay")
+house = ExtResource("4_puitm")
+
+[node name="Planet" type="Sprite2D" parent="."]
+position = Vector2(867, 523)
+texture = ExtResource("4_ssv5k")
+region_rect = Rect2(1000, 1000, 1000, 1000)
+script = ExtResource("5_ykbss")
+walker_scene = ExtResource("6_4avp5")
+
+[node name="Area2D" type="Area2D" parent="Planet"]
+gravity_space_override = 1
+gravity_point = true
+gravity_point_center = Vector2(0, 0)
+gravity_direction = Vector2(0, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Planet/Area2D"]
+scale = Vector2(10, 10)
+shape = SubResource("CircleShape2D_pkewr")
+debug_color = Color(0.43645, 0.536207, 0.726018, 0.42)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+text = "Spawn"
+
+[node name="Button2" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+text = "Spawn tree
+"
+
+[node name="Button3" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+text = "Spawn Rock"
+
+[node name="Button4" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+text = "Add house"
+
+[node name="Resources" type="HBoxContainer" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+script = ExtResource("7_impcx")
+resource_label_scene = ExtResource("8_mkrk4")
+
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/Button4" to="." method="_on_button_4_pressed"]

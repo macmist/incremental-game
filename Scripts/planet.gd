@@ -58,7 +58,9 @@ func spawn_static_object(scene: PackedScene):
 
 	obj.global_position = pos
 	obj.rotation = angle + PI/2   # makes it “stand upright” on the surface
-
+	if obj.has_method("set_planet"):
+		print(center, radius)
+		obj.set_planet(center, radius)
 
 #func _input(event):
 	#if event is InputEventMouseButton:
