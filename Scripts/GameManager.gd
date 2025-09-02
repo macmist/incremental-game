@@ -2,6 +2,7 @@ extends Node
 
 
 var spawn_cost: int = 0
+var click_power: int = 1
 
 signal resource_updated(resource_type: CollectableResource.ResourceType, new_value: int)
 
