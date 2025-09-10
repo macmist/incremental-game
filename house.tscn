@@ -1,8 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://cjr3y723djjua"]
 
 [ext_resource type="Texture2D" uid="uid://cp7s3sw4mtbol" path="res://Images/house.png" id="1_jut6k"]
-[ext_resource type="Script" path="res://Scripts/placeable.gd" id="2_mii0t"]
+[ext_resource type="Script" path="res://Scripts/Buildings/House.gd" id="2_1o7yl"]
 
-[node name="Sprite2D" type="Sprite2D"]
+[node name="Sprite2D" type="Sprite2D" groups=["Houses"]]
 texture = ExtResource("1_jut6k")
-script = ExtResource("2_mii0t")
+script = ExtResource("2_1o7yl")

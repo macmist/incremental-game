@@ -1,5 +1,7 @@
 extends Sprite2D
 
+class_name WalkerEntity
+
 enum State {IDLE, MOVING, COLLECTING, RETURNING, RESTING}
 var state: State = State.IDLE
 
@@ -14,7 +16,7 @@ var home: Node2D
 var home_angle: float = 0.0
 var radius: float = 100.0
 var planet_position: Vector2 = Vector2.ZERO
-var energy: int = 0
+var energy: float = 0
 
 var target: CollectableResource
 
@@ -37,11 +39,11 @@ func collect():
 			energy -= 1
 			if energy <= 0:
 				energy = 0
-				state = State.RETURNING
+				transition()
 				print("IM TOO TIRED NOW")
 		if not is_instance_valid(target) or target.remaining <= 0:
 			target = null
-			state = State.IDLE
+			transition()
 			
 func collect_resource(delta):
 	if timer.is_stopped():
@@ -58,8 +60,50 @@ func find_target():
 		print("found resource at: ", resource.position)
 		target = resource
 		set_target(resource.position)
-		state = State.MOVING
+		transition()
 
+
+func remove_home():
+	home = null
+	home_angle = 0
+	
+
+func try_set_home():
+	var house = find_nearest_house()
+	if house and house.add_walker(self):
+		print("Walker joined house")
+	else:
+		print("Couldn't find a suitable house")
+		
+func transition():
+	match state:
+		State.IDLE:
+			state = State.MOVING
+		State.MOVING:
+			state = State.COLLECTING
+		State.COLLECTING:
+			if energy > 0:
+				state = State.IDLE
+			else:
+				state = State.RETURNING
+		State.RETURNING:
+			state = State.RESTING
+		State.RESTING:
+			state = State.IDLE
+		
+func find_nearest_house() -> House:
+	var houses = get_tree().get_nodes_in_group("Houses")
+	var best_house: House = null
+	var best_distance := INF
+	
+	for h in houses.filter(func(house): return house.placed):
+		if h is House and h.has_space():
+			var dist = global_position.distance_to(h.global_position)
+			if dist < best_distance:
+				best_distance = dist
+				best_house = h
+	
+	return best_house
 
 func set_home(home: Node2D):
 	self.home = home
@@ -76,6 +120,8 @@ func set_planet(planet_position: Vector2, radius: float):
 	
 	
 func _process(delta: float) -> void:
+	if !home:
+		try_set_home()
 	match state:
 		State.IDLE:
 			find_target()
@@ -89,13 +135,15 @@ func _process(delta: float) -> void:
 			rest(delta)
 
 
-
-
 func rest(delta):
+	print(rest_rate * delta)
 	energy += rest_rate * delta
 	if energy > energy_max:
 		energy = energy_max
-		state = State.IDLE
+		transition()
+		print("I am rested, back to work")
+	else:
+		print("Resting, energy at ", energy)
 		
 		
 func move_toward_home(delta):
@@ -108,7 +156,8 @@ func move_toward_home(delta):
 		rotation = angle + PI/2
 		timer.stop()
 	else:
-		state = State.RESTING
+		print("Now i rest")
+		transition()
 
 func move_toward_target(delta):
 	if angle != target_angle:
@@ -120,7 +169,7 @@ func move_toward_target(delta):
 		rotation = angle + PI/2
 		timer.stop()
 	else:
-		state = State.COLLECTING
+		transition()
 
 
 func set_target(world_pos: Vector2):
