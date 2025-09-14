@@ -17,7 +17,7 @@ func spawn_walker(angle: float):
 	get_tree().current_scene.add_child(walker)
 	
 	var center = global_position
-	var radius = collision_shape.shape.radius * collision_shape.scale.x 
+	var radius = collision_shape.shape.radius * scale.x 
 	#var radius = (self.texture.get_size().x * self.scale.x) / 2.0
 	print("radius:", radius)
 	
@@ -34,7 +34,7 @@ func spawn_walker(angle: float):
 
 func get_radius() -> float:
 	var circle = collision_shape.shape as CircleShape2D
-	return circle.radius * collision_shape.scale.x
+	return circle.radius * scale.x
 
 
 func spawn_static_object(scene: PackedScene):
@@ -51,8 +51,8 @@ func spawn_static_object(scene: PackedScene):
 	# Optional: push outward a bit if the sprite should sit outside the circle
 	var sprite = obj
 	if sprite:
-		var half_height = (sprite.texture.get_size().y * sprite.scale.y) / 2.0
-		pos += Vector2(cos(angle), sin(angle)) * half_height
+		var half_height = (sprite.texture.get_size().y * sprite.scale.y) / 2
+		pos = center + Vector2(cos(angle), sin(angle)) * radius + Vector2(cos(angle), sin(angle)) * half_height
 	else:
 		print("Nope")
 

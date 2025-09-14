@@ -72,8 +72,7 @@ func try_set_home():
 	var house = find_nearest_house()
 	if house and house.add_walker(self):
 		print("Walker joined house")
-	else:
-		print("Couldn't find a suitable house")
+	
 		
 func transition():
 	match state:
