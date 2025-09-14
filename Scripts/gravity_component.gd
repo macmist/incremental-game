@@ -1,7 +1,6 @@
 extends Node
 class_name GravityComponent
 
-
 @export_subgroup("Settings")
 @export var gravity: float = 1200.0
 

@@ -2,5 +2,15 @@
 
 [ext_resource type="Script" path="res://Scripts/advanced_jump_component.gd" id="1_514eq"]
 
-[node name="AdvancedJumpComponent" type="Node"]
+[node name="AdvancedJumpComponent" type="Node" node_paths=PackedStringArray("jumper_buffer_timer", "coyote_timer")]
 script = ExtResource("1_514eq")
+jumper_buffer_timer = NodePath("JumpBufferTimer")
+coyote_timer = NodePath("CoyoteTimer")
+
+[node name="JumpBufferTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+wait_time = 0.8
+one_shot = true
