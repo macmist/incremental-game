@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Scripts/gravity_component.gd" id="2_os32o"]
 [ext_resource type="Script" path="res://Scripts/input_component.gd" id="4_rdlli"]
 [ext_resource type="Script" path="res://Scripts/movement_component.gd" id="5_vtk3c"]
-[ext_resource type="Script" path="res://Components/jump_component.gd" id="6_s0t03"]
+[ext_resource type="Script" path="res://Scripts/advanced_jump_component.gd" id="6_81s3w"]
 [ext_resource type="PackedScene" uid="uid://c531rv7qckd6x" path="res://Components/Platform.tscn" id="7_scfsq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ci84u"]
@@ -23,7 +23,7 @@ script = ExtResource("1_enrbd")
 gravity_component = NodePath("GravityComponent")
 input_component = NodePath("InputComponent")
 movement_component = NodePath("MovementComponent")
-jump_component = NodePath("JumpComponent")
+jump_component = NodePath("AdvancedJumpComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
 texture = ExtResource("1_b6jq6")
@@ -40,9 +40,10 @@ script = ExtResource("4_rdlli")
 
 [node name="MovementComponent" type="Node" parent="Player"]
 script = ExtResource("5_vtk3c")
+speed = 700.0
 
-[node name="JumpComponent" type="Node" parent="Player"]
-script = ExtResource("6_s0t03")
+[node name="AdvancedJumpComponent" type="Node" parent="Player"]
+script = ExtResource("6_81s3w")
 
 [node name="Floor" type="Sprite2D" parent="."]
 position = Vector2(801.5, 840)
