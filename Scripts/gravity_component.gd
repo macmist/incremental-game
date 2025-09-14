@@ -3,7 +3,7 @@ class_name GravityComponent
 
 
 @export_subgroup("Settings")
-@export var gravity: float = 1000.0
+@export var gravity: float = 1200.0
 
 
 var is_falling: bool = false
