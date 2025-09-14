@@ -6,6 +6,12 @@ extends Node2D
 @export var house: PackedScene
 
 
+func _ready() -> void:
+	for i in range(GameManager.initial_resources_spawn):
+		planet.spawn_object.emit(tree)
+		planet.spawn_object.emit(rock)
+
+
 func _on_button_pressed() -> void:
 	if GameManager.spend_resource(CollectableResource.ResourceType.WOOD, GameManager.spawn_cost):
 		planet.spawn.emit(20)
