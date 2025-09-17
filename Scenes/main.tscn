@@ -21,8 +21,7 @@ rock = ExtResource("3_d7bay")
 house = ExtResource("4_puitm")
 
 [node name="Planet" type="Sprite2D" parent="."]
-position = Vector2(149, 99)
-scale = Vector2(0.1, 0.1)
+position = Vector2(646, 358)
 texture = ExtResource("4_ssv5k")
 region_rect = Rect2(1000, 1000, 1000, 1000)
 script = ExtResource("5_ykbss")

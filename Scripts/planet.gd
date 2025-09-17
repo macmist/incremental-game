@@ -17,7 +17,7 @@ func spawn_walker(angle: float):
 	get_tree().current_scene.add_child(walker)
 	
 	var center = global_position
-	var radius = collision_shape.shape.radius * scale.x 
+	var radius = collision_shape.shape.radius * collision_shape.scale.x 
 	#var radius = (self.texture.get_size().x * self.scale.x) / 2.0
 	print("radius:", radius)
 	
@@ -34,7 +34,7 @@ func spawn_walker(angle: float):
 
 func get_radius() -> float:
 	var circle = collision_shape.shape as CircleShape2D
-	return circle.radius * scale.x
+	return circle.radius * collision_shape.scale.x
 
 
 func spawn_static_object(scene: PackedScene):
