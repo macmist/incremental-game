@@ -5,5 +5,4 @@ class_name AnimationComponent
 @export var anim_tree: AnimationTree
 
 func handle_horiziontal_direction(h_direction: float) -> void:
-	
 	anim_tree["parameters/Idle/blend_position"] = Vector2(h_direction, 0)
