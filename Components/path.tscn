@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2ejd8at1k3r3"]
+
+[ext_resource type="Texture2D" uid="uid://cipptjph55esq" path="res://Images/path.png" id="1_tq66a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8d0n8"]
+size = Vector2(1000, 89)
+
+[node name="Path" type="Sprite2D"]
+position = Vector2(-165, 484)
+texture = ExtResource("1_tq66a")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 34.5)
+shape = SubResource("RectangleShape2D_8d0n8")

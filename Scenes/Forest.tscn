@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bc2ydvv21y42o"]
+[gd_scene load_steps=12 format=3 uid="uid://bc2ydvv21y42o"]
 
 [ext_resource type="Texture2D" uid="uid://ce8x3m5rxfqa4" path="res://icon.svg" id="1_b6jq6"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_enrbd"]
@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://n166q6n02bes" path="res://Components/AdvancedJumpComponent.tscn" id="5_dc6bf"]
 [ext_resource type="Script" path="res://Scripts/movement_component.gd" id="5_vtk3c"]
 [ext_resource type="PackedScene" uid="uid://c531rv7qckd6x" path="res://Components/Platform.tscn" id="7_nof50"]
+[ext_resource type="PackedScene" uid="uid://b2ejd8at1k3r3" path="res://Components/path.tscn" id="8_bgp1i"]
+[ext_resource type="Texture2D" uid="uid://lpsaka7wj4hr" path="res://Images/long-grass.png" id="9_ykrtj"]
+[ext_resource type="Texture2D" uid="uid://b4tccnk6nbfij" path="res://Images/Bush.png" id="10_okivm"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ci84u"]
 radius = 61.0
@@ -15,6 +18,7 @@ height = 127.0
 [node name="Forest" type="Node2D"]
 
 [node name="Player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("gravity_component", "input_component", "movement_component", "jump_component")]
+z_index = 2
 script = ExtResource("1_enrbd")
 gravity_component = NodePath("GravityComponent")
 input_component = NodePath("InputComponent")
@@ -47,22 +51,125 @@ ground_deceleration_speed = 60.0
 scale = Vector2(2.77779, 3.12499)
 limit_smoothed = true
 
-[node name="Platform" parent="." instance=ExtResource("7_nof50")]
-position = Vector2(551.5, 526)
-scale = Vector2(9.74219, 1)
-
-[node name="Platform4" parent="." instance=ExtResource("7_nof50")]
-position = Vector2(-588, 523)
-scale = Vector2(9.74219, 1)
-
 [node name="Platform5" parent="." instance=ExtResource("7_nof50")]
 position = Vector2(-1307, -422.5)
 scale = Vector2(9.74219, 15.7734)
 
-[node name="Platform2" parent="." instance=ExtResource("7_nof50")]
-position = Vector2(1721, 529)
-scale = Vector2(9.74219, 1)
-
 [node name="Platform3" parent="." instance=ExtResource("7_nof50")]
 position = Vector2(2349.5, 356)
 scale = Vector2(3.89844, 3.70312)
+
+[node name="Path" parent="." instance=ExtResource("8_bgp1i")]
+position = Vector2(-199, 486)
+
+[node name="Path2" parent="." instance=ExtResource("8_bgp1i")]
+position = Vector2(799, 487)
+
+[node name="Path3" parent="." instance=ExtResource("8_bgp1i")]
+position = Vector2(1798, 488)
+
+[node name="Back" type="Node2D" parent="."]
+z_index = -1
+
+[node name="Bush3" type="Sprite2D" parent="Back"]
+position = Vector2(548, 365)
+scale = Vector2(2.27746, 2.3169)
+texture = ExtResource("10_okivm")
+
+[node name="Bush4" type="Sprite2D" parent="Back"]
+position = Vector2(1438, 365)
+scale = Vector2(2.27746, 2.3169)
+texture = ExtResource("10_okivm")
+
+[node name="Bush5" type="Sprite2D" parent="Back"]
+position = Vector2(2173, 365)
+scale = Vector2(2.27746, 2.3169)
+texture = ExtResource("10_okivm")
+
+[node name="Long-grass" type="Sprite2D" parent="Back"]
+position = Vector2(915, 402)
+scale = Vector2(2.05093, 1)
+texture = ExtResource("9_ykrtj")
+
+[node name="Long-grass6" type="Sprite2D" parent="Back"]
+position = Vector2(494, 405)
+scale = Vector2(2.05093, 1)
+texture = ExtResource("9_ykrtj")
+
+[node name="Long-grass7" type="Sprite2D" parent="Back"]
+position = Vector2(65, 402)
+scale = Vector2(2.05093, 1)
+texture = ExtResource("9_ykrtj")
+
+[node name="Long-grass8" type="Sprite2D" parent="Back"]
+position = Vector2(-353, 395)
+scale = Vector2(2.05093, 1)
+texture = ExtResource("9_ykrtj")
+
+[node name="Long-grass9" type="Sprite2D" parent="Back"]
+position = Vector2(-671, 382)
+scale = Vector2(2.05093, 1)
+texture = ExtResource("9_ykrtj")
+
+[node name="Long-grass2" type="Sprite2D" parent="Back"]
+position = Vector2(1331, 399)
+scale = Vector2(2.05093, 1)
+texture = ExtResource("9_ykrtj")
+
+[node name="Long-grass3" type="Sprite2D" parent="Back"]
+position = Vector2(1783, 405)
+scale = Vector2(2.05093, 1)
+texture = ExtResource("9_ykrtj")
+
+[node name="Long-grass4" type="Sprite2D" parent="Back"]
+position = Vector2(2181, 402)
+scale = Vector2(2.05093, 1)
+texture = ExtResource("9_ykrtj")
+
+[node name="Long-grass5" type="Sprite2D" parent="Back"]
+position = Vector2(2181, 402)
+scale = Vector2(2.05093, 1)
+texture = ExtResource("9_ykrtj")
+
+[node name="Front" type="Node2D" parent="."]
+z_index = 3
+
+[node name="Long-grass" type="Sprite2D" parent="Front"]
+position = Vector2(-158, 533)
+scale = Vector2(2.73843, 2.14516)
+texture = ExtResource("9_ykrtj")
+
+[node name="Long-grass6" type="Sprite2D" parent="Front"]
+position = Vector2(-669, 527)
+scale = Vector2(2.73843, 2.14516)
+texture = ExtResource("9_ykrtj")
+
+[node name="Long-grass2" type="Sprite2D" parent="Front"]
+position = Vector2(448, 524)
+scale = Vector2(2.73843, 2.14516)
+texture = ExtResource("9_ykrtj")
+
+[node name="Long-grass3" type="Sprite2D" parent="Front"]
+position = Vector2(1026, 531)
+scale = Vector2(2.73843, 2.14516)
+texture = ExtResource("9_ykrtj")
+
+[node name="Long-grass4" type="Sprite2D" parent="Front"]
+position = Vector2(1603, 548)
+scale = Vector2(2.73843, 2.14516)
+texture = ExtResource("9_ykrtj")
+
+[node name="Long-grass5" type="Sprite2D" parent="Front"]
+position = Vector2(2216, 522)
+scale = Vector2(2.73843, 2.14516)
+texture = ExtResource("9_ykrtj")
+
+[node name="Bush" type="Sprite2D" parent="Front"]
+position = Vector2(149, 503)
+scale = Vector2(2.27746, 2.3169)
+texture = ExtResource("10_okivm")
+
+[node name="Bush2" type="Sprite2D" parent="Front"]
+position = Vector2(1846, 492)
+scale = Vector2(2.27746, 2.3169)
+texture = ExtResource("10_okivm")

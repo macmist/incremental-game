@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwllm082adshc"]
+
+[ext_resource type="Texture2D" uid="uid://dosthfminn1kk" path="res://Images/rock_path.png" id="1_eqybx"]
+
+[node name="RockPath" type="Sprite2D"]
+position = Vector2(470, 273)
+texture = ExtResource("1_eqybx")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(2, -24, 81, -28, 110, -25, 115, -2, 64, 40, -92, 33, -113, 0, -99, -21)
