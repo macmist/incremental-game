@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dalviawoqge7y"]
+
+[ext_resource type="Script" path="res://Components/animation_component.gd" id="1_71kke"]
+
+[node name="AnimationComponent" type="Node"]
+script = ExtResource("1_71kke")

@@ -1,35 +1,209 @@
-[gd_scene load_steps=12 format=3 uid="uid://bc2ydvv21y42o"]
+[gd_scene load_steps=21 format=3 uid="uid://bc2ydvv21y42o"]
 
-[ext_resource type="Texture2D" uid="uid://ce8x3m5rxfqa4" path="res://icon.svg" id="1_b6jq6"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_enrbd"]
 [ext_resource type="Script" path="res://Scripts/gravity_component.gd" id="2_os32o"]
+[ext_resource type="Texture2D" uid="uid://cjp2f6nb2nuit" path="res://Images/Cloacked-entity-Sheet.png" id="2_t5qdv"]
 [ext_resource type="Script" path="res://Scripts/input_component.gd" id="4_rdlli"]
 [ext_resource type="PackedScene" uid="uid://n166q6n02bes" path="res://Components/AdvancedJumpComponent.tscn" id="5_dc6bf"]
 [ext_resource type="Script" path="res://Scripts/movement_component.gd" id="5_vtk3c"]
-[ext_resource type="PackedScene" uid="uid://c531rv7qckd6x" path="res://Components/Platform.tscn" id="7_nof50"]
+[ext_resource type="PackedScene" uid="uid://dalviawoqge7y" path="res://Components/AnimationComponent.tscn" id="6_hllx0"]
 [ext_resource type="PackedScene" uid="uid://b2ejd8at1k3r3" path="res://Components/path.tscn" id="8_bgp1i"]
 [ext_resource type="Texture2D" uid="uid://lpsaka7wj4hr" path="res://Images/long-grass.png" id="9_ykrtj"]
 [ext_resource type="Texture2D" uid="uid://b4tccnk6nbfij" path="res://Images/Bush.png" id="10_okivm"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ci84u"]
-radius = 61.0
-height = 127.0
+radius = 14.0
+height = 83.0
+
+[sub_resource type="Animation" id="Animation_uxio5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_t5qdv")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, 13)]
+}
+
+[sub_resource type="Animation" id="Animation_q5p4u"]
+resource_name = "idle_left"
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_t5qdv")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-8, 13), Vector2(-8, 11), Vector2(-8, 9), Vector2(-8, 11)]
+}
+
+[sub_resource type="Animation" id="Animation_dd73c"]
+resource_name = "idle_right"
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_t5qdv")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(10, 13)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cpr86"]
+_data = {
+"RESET": SubResource("Animation_uxio5"),
+"idle_left": SubResource("Animation_q5p4u"),
+"idle_right": SubResource("Animation_dd73c")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_akxeb"]
+animation = &"idle_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ke0py"]
+animation = &"idle_right"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_ashci"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_akxeb")
+blend_point_0/pos = Vector2(-1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_ke0py")
+blend_point_1/pos = Vector2(1, 0)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tfq1p"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ulipf"]
+states/Idle/node = SubResource("AnimationNodeBlendSpace2D_ashci")
+states/Idle/position = Vector2(481.85, 102.25)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_tfq1p")]
+graph_offset = Vector2(42.3, -65.9175)
 
 [node name="Forest" type="Node2D"]
 
-[node name="Player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("gravity_component", "input_component", "movement_component", "jump_component")]
-z_index = 2
+[node name="Player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("gravity_component", "input_component", "movement_component", "jump_component", "animation_component")]
+z_index = 1
 script = ExtResource("1_enrbd")
 gravity_component = NodePath("GravityComponent")
 input_component = NodePath("InputComponent")
 movement_component = NodePath("MovementComponent")
 jump_component = NodePath("AdvancedJumpComponent")
+animation_component = NodePath("AnimationComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
-texture = ExtResource("1_b6jq6")
+texture = ExtResource("2_t5qdv")
+hframes = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(0, -0.5)
+position = Vector2(-8, 13)
 shape = SubResource("CapsuleShape2D_ci84u")
 
 [node name="GravityComponent" type="Node" parent="Player"]
@@ -42,6 +216,9 @@ script = ExtResource("4_rdlli")
 [node name="AdvancedJumpComponent" parent="Player" instance=ExtResource("5_dc6bf")]
 jump_velocity = -650.0
 
+[node name="AnimationComponent" parent="Player" node_paths=PackedStringArray("anim_tree") instance=ExtResource("6_hllx0")]
+anim_tree = NodePath("../AnimationTree")
+
 [node name="MovementComponent" type="Node" parent="Player"]
 script = ExtResource("5_vtk3c")
 speed = 700.0
@@ -51,125 +228,130 @@ ground_deceleration_speed = 60.0
 scale = Vector2(2.77779, 3.12499)
 limit_smoothed = true
 
-[node name="Platform5" parent="." instance=ExtResource("7_nof50")]
-position = Vector2(-1307, -422.5)
-scale = Vector2(9.74219, 15.7734)
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
+libraries = {
+"": SubResource("AnimationLibrary_cpr86")
+}
 
-[node name="Platform3" parent="." instance=ExtResource("7_nof50")]
-position = Vector2(2349.5, 356)
-scale = Vector2(3.89844, 3.70312)
+[node name="AnimationTree" type="AnimationTree" parent="Player"]
+tree_root = SubResource("AnimationNodeStateMachine_ulipf")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Idle/blend_position = Vector2(0, 0)
 
-[node name="Path" parent="." instance=ExtResource("8_bgp1i")]
-position = Vector2(-199, 486)
+[node name="Path" type="Marker2D" parent="."]
 
-[node name="Path2" parent="." instance=ExtResource("8_bgp1i")]
-position = Vector2(799, 487)
+[node name="Path2" parent="Path" instance=ExtResource("8_bgp1i")]
+position = Vector2(-10, 267)
+scale = Vector2(0.5, 0.5)
 
-[node name="Path3" parent="." instance=ExtResource("8_bgp1i")]
-position = Vector2(1798, 488)
+[node name="Path3" parent="Path" instance=ExtResource("8_bgp1i")]
+position = Vector2(490, 267)
+scale = Vector2(0.5, 0.5)
 
-[node name="Back" type="Node2D" parent="."]
-z_index = -1
+[node name="Path4" parent="Path" instance=ExtResource("8_bgp1i")]
+position = Vector2(990, 267)
+scale = Vector2(0.5, 0.5)
 
-[node name="Bush3" type="Sprite2D" parent="Back"]
-position = Vector2(548, 365)
-scale = Vector2(2.27746, 2.3169)
-texture = ExtResource("10_okivm")
-
-[node name="Bush4" type="Sprite2D" parent="Back"]
-position = Vector2(1438, 365)
-scale = Vector2(2.27746, 2.3169)
-texture = ExtResource("10_okivm")
-
-[node name="Bush5" type="Sprite2D" parent="Back"]
-position = Vector2(2173, 365)
-scale = Vector2(2.27746, 2.3169)
-texture = ExtResource("10_okivm")
+[node name="Back" type="Marker2D" parent="."]
+z_index = -2
 
 [node name="Long-grass" type="Sprite2D" parent="Back"]
-position = Vector2(915, 402)
-scale = Vector2(2.05093, 1)
-texture = ExtResource("9_ykrtj")
-
-[node name="Long-grass6" type="Sprite2D" parent="Back"]
-position = Vector2(494, 405)
-scale = Vector2(2.05093, 1)
-texture = ExtResource("9_ykrtj")
-
-[node name="Long-grass7" type="Sprite2D" parent="Back"]
-position = Vector2(65, 402)
-scale = Vector2(2.05093, 1)
-texture = ExtResource("9_ykrtj")
-
-[node name="Long-grass8" type="Sprite2D" parent="Back"]
-position = Vector2(-353, 395)
-scale = Vector2(2.05093, 1)
-texture = ExtResource("9_ykrtj")
-
-[node name="Long-grass9" type="Sprite2D" parent="Back"]
-position = Vector2(-671, 382)
-scale = Vector2(2.05093, 1)
+position = Vector2(-151, 218)
 texture = ExtResource("9_ykrtj")
 
 [node name="Long-grass2" type="Sprite2D" parent="Back"]
-position = Vector2(1331, 399)
-scale = Vector2(2.05093, 1)
+position = Vector2(60, 229)
 texture = ExtResource("9_ykrtj")
 
 [node name="Long-grass3" type="Sprite2D" parent="Back"]
-position = Vector2(1783, 405)
-scale = Vector2(2.05093, 1)
+position = Vector2(275, 225)
 texture = ExtResource("9_ykrtj")
 
 [node name="Long-grass4" type="Sprite2D" parent="Back"]
-position = Vector2(2181, 402)
-scale = Vector2(2.05093, 1)
+position = Vector2(490, 228)
 texture = ExtResource("9_ykrtj")
 
 [node name="Long-grass5" type="Sprite2D" parent="Back"]
-position = Vector2(2181, 402)
-scale = Vector2(2.05093, 1)
+position = Vector2(704, 220)
 texture = ExtResource("9_ykrtj")
 
-[node name="Front" type="Node2D" parent="."]
-z_index = 3
+[node name="Long-grass6" type="Sprite2D" parent="Back"]
+position = Vector2(919, 225)
+texture = ExtResource("9_ykrtj")
+
+[node name="Long-grass7" type="Sprite2D" parent="Back"]
+position = Vector2(1129, 217)
+texture = ExtResource("9_ykrtj")
+
+[node name="Bush5" type="Sprite2D" parent="Back"]
+z_index = -1
+position = Vector2(97, 195)
+texture = ExtResource("10_okivm")
+
+[node name="Bush6" type="Sprite2D" parent="Back"]
+z_index = -1
+position = Vector2(411, 213)
+texture = ExtResource("10_okivm")
+
+[node name="Bush7" type="Sprite2D" parent="Back"]
+z_index = -1
+position = Vector2(411, 213)
+rotation = -0.11334
+texture = ExtResource("10_okivm")
+
+[node name="Bush8" type="Sprite2D" parent="Back"]
+z_index = -1
+position = Vector2(819, 210)
+texture = ExtResource("10_okivm")
+
+[node name="Front" type="Marker2D" parent="."]
+z_index = 2
 
 [node name="Long-grass" type="Sprite2D" parent="Front"]
-position = Vector2(-158, 533)
-scale = Vector2(2.73843, 2.14516)
-texture = ExtResource("9_ykrtj")
-
-[node name="Long-grass6" type="Sprite2D" parent="Front"]
-position = Vector2(-669, 527)
-scale = Vector2(2.73843, 2.14516)
+position = Vector2(-158, 297)
 texture = ExtResource("9_ykrtj")
 
 [node name="Long-grass2" type="Sprite2D" parent="Front"]
-position = Vector2(448, 524)
-scale = Vector2(2.73843, 2.14516)
+position = Vector2(54, 301)
 texture = ExtResource("9_ykrtj")
 
 [node name="Long-grass3" type="Sprite2D" parent="Front"]
-position = Vector2(1026, 531)
-scale = Vector2(2.73843, 2.14516)
+position = Vector2(54, 301)
+rotation = -0.0327589
 texture = ExtResource("9_ykrtj")
 
 [node name="Long-grass4" type="Sprite2D" parent="Front"]
-position = Vector2(1603, 548)
-scale = Vector2(2.73843, 2.14516)
+position = Vector2(265, 305)
 texture = ExtResource("9_ykrtj")
 
 [node name="Long-grass5" type="Sprite2D" parent="Front"]
-position = Vector2(2216, 522)
-scale = Vector2(2.73843, 2.14516)
+position = Vector2(480, 302)
+texture = ExtResource("9_ykrtj")
+
+[node name="Long-grass6" type="Sprite2D" parent="Front"]
+position = Vector2(692, 305)
+texture = ExtResource("9_ykrtj")
+
+[node name="Long-grass7" type="Sprite2D" parent="Front"]
+position = Vector2(895, 306)
+texture = ExtResource("9_ykrtj")
+
+[node name="Long-grass8" type="Sprite2D" parent="Front"]
+position = Vector2(1115, 294)
 texture = ExtResource("9_ykrtj")
 
 [node name="Bush" type="Sprite2D" parent="Front"]
-position = Vector2(149, 503)
-scale = Vector2(2.27746, 2.3169)
+position = Vector2(-16, 311)
 texture = ExtResource("10_okivm")
 
 [node name="Bush2" type="Sprite2D" parent="Front"]
-position = Vector2(1846, 492)
-scale = Vector2(2.27746, 2.3169)
+position = Vector2(350, 312)
+texture = ExtResource("10_okivm")
+
+[node name="Bush3" type="Sprite2D" parent="Front"]
+position = Vector2(1022, 303)
+texture = ExtResource("10_okivm")
+
+[node name="Bush4" type="Sprite2D" parent="Front"]
+position = Vector2(714, 317)
 texture = ExtResource("10_okivm")
