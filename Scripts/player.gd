@@ -13,6 +13,7 @@ func _physics_process(delta: float) -> void:
 	movement_component.handle_horizontal_movement(self, input_component.input_horizontal)
 	jump_component.handle_jump(self, input_component.get_jump_input(), input_component.get_jump_input_released())
 	animation_component.handle_horiziontal_direction(input_component.input_horizontal)
+	animation_component.handle_attack(input_component.get_attack_input(), input_component.get_attack_input_released())
 	move_and_slide()
 
 #const SPEED = 300.0
