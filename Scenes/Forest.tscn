@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bc2ydvv21y42o"]
+[gd_scene load_steps=6 format=3 uid="uid://bc2ydvv21y42o"]
 
 [ext_resource type="PackedScene" uid="uid://doe7ejy1idhrw" path="res://player.tscn" id="1_7e4re"]
+[ext_resource type="Texture2D" uid="uid://dg2gsj5ufsa3x" path="res://Images/sky.png" id="5_fvlnb"]
 [ext_resource type="PackedScene" uid="uid://b2ejd8at1k3r3" path="res://Components/path.tscn" id="8_bgp1i"]
 [ext_resource type="Texture2D" uid="uid://lpsaka7wj4hr" path="res://Images/long-grass.png" id="9_ykrtj"]
 [ext_resource type="Texture2D" uid="uid://b4tccnk6nbfij" path="res://Images/Bush.png" id="10_okivm"]
@@ -126,3 +127,16 @@ texture = ExtResource("10_okivm")
 [node name="Bush4" type="Sprite2D" parent="Front"]
 position = Vector2(714, 317)
 texture = ExtResource("10_okivm")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+follow_viewport_enabled = true
+
+[node name="Parallax2D" type="Parallax2D" parent="ParallaxBackground"]
+scroll_scale = Vector2(0.1, 0)
+repeat_size = Vector2(1000, 0)
+repeat_times = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Parallax2D"]
+texture = ExtResource("5_fvlnb")
+centered = false
+offset = Vector2(0, -400)
