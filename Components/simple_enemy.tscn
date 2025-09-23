@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://buyiqlv0q767j"]
+
+[ext_resource type="Script" path="res://Scripts/simple_enemy.gd" id="1_4wfy3"]
+[ext_resource type="Texture2D" uid="uid://ce8x3m5rxfqa4" path="res://icon.svg" id="1_5ksuj"]
+[ext_resource type="PackedScene" uid="uid://blqf4r10vxsd3" path="res://detection_range_component.tscn" id="2_rq26c"]
+[ext_resource type="PackedScene" uid="uid://c64ihromsunrw" path="res://Components/GravityComponent.tscn" id="4_lb0i2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ym2gu"]
+radius = 63.0079
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8bytm"]
+radius = 376.005
+
+[node name="SimpleEnemy" type="CharacterBody2D" node_paths=PackedStringArray("detectionRange", "gravityComponent")]
+script = ExtResource("1_4wfy3")
+detectionRange = NodePath("DetectionRangeComponent")
+gravityComponent = NodePath("GravityComponent")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_5ksuj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ym2gu")
+
+[node name="DetectionRangeComponent" parent="." instance=ExtResource("2_rq26c")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRangeComponent"]
+shape = SubResource("CircleShape2D_8bytm")
+debug_color = Color(0.926315, 0.103778, 0.616346, 0.42)
+
+[node name="GravityComponent" parent="." instance=ExtResource("4_lb0i2")]

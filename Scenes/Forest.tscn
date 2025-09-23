@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bc2ydvv21y42o"]
+[gd_scene load_steps=9 format=3 uid="uid://bc2ydvv21y42o"]
 
 [ext_resource type="PackedScene" uid="uid://doe7ejy1idhrw" path="res://player.tscn" id="1_7e4re"]
 [ext_resource type="Texture2D" uid="uid://42cvyaxwedl5" path="res://Images/tree_tall.png" id="5_e10a6"]
 [ext_resource type="Texture2D" uid="uid://dg2gsj5ufsa3x" path="res://Images/sky.png" id="5_fvlnb"]
 [ext_resource type="Texture2D" uid="uid://531il458pmca" path="res://Images/water.png" id="6_j0bhc"]
 [ext_resource type="PackedScene" uid="uid://b2ejd8at1k3r3" path="res://Components/path.tscn" id="8_bgp1i"]
+[ext_resource type="PackedScene" uid="uid://buyiqlv0q767j" path="res://Components/simple_enemy.tscn" id="8_hvkhv"]
 [ext_resource type="Texture2D" uid="uid://lpsaka7wj4hr" path="res://Images/long-grass.png" id="9_ykrtj"]
 [ext_resource type="Texture2D" uid="uid://b4tccnk6nbfij" path="res://Images/Bush.png" id="10_okivm"]
 
@@ -83,19 +84,16 @@ texture = ExtResource("10_okivm")
 [node name="TreeTall" type="Sprite2D" parent="Back"]
 z_index = -2
 position = Vector2(152, 80)
-scale = Vector2(1, 1)
 texture = ExtResource("5_e10a6")
 
 [node name="TreeTall2" type="Sprite2D" parent="Back"]
 z_index = -2
 position = Vector2(498, 82)
-scale = Vector2(1, 1)
 texture = ExtResource("5_e10a6")
 
 [node name="TreeTall3" type="Sprite2D" parent="Back"]
 z_index = -2
 position = Vector2(878, 86)
-scale = Vector2(1, 1)
 texture = ExtResource("5_e10a6")
 
 [node name="Front" type="Marker2D" parent="."]
@@ -167,6 +165,8 @@ repeat_times = 100
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Parallax2D"]
 position = Vector2(985, -88.75)
-scale = Vector2(1, 1)
 texture = ExtResource("5_fvlnb")
 centered = false
+
+[node name="SimpleEnemy" parent="." instance=ExtResource("8_hvkhv")]
+position = Vector2(766, 363)
